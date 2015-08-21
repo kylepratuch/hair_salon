@@ -20,7 +20,7 @@
             // Client::deleteAll();
         }
 
-        //Test that Stylist method can getName:
+        //Test that Stylist can getName:
         function test_getName()
         {
             //Arrange
@@ -34,7 +34,7 @@
             $this->assertEquals($name, $result);
         }
 
-        //Test that Stylist method can getId:
+        //Test that Stylist can getId:
         function test_getId()
         {
             //Arrange
@@ -49,7 +49,7 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        //Test that Stylist method can save to db:
+        //Test that Stylist can save to db:
         function test_save()
         {
             //Arrange
@@ -64,7 +64,7 @@
             $this->assertEquals($test_stylist, $result[0]);
         }
 
-        //Test that Stylist method can getAll from db:
+        //Test that Stylist can getAll from db:
         function test_getAll()
         {
             //Arrange
@@ -82,7 +82,7 @@
             $this->assertEquals([$test_stylist, $test_stylist2], $result);
         }
 
-        //Test that Stylist method can deleteAll from db:
+        //Test that Stylist can deleteAll from db:
         function test_deleteAll()
         {
             //Arrange
@@ -101,7 +101,7 @@
             $this->assertEquals([], $result);
         }
 
-        //Test that Stylist method can find by id in db:
+        //Test that Stylist can find by id in db:
         function test_find()
         {
             //Arrange
@@ -117,6 +117,24 @@
 
             //Assert
             $this->assertEquals($test_stylist, $result);
+        }
+
+        //Test that Stylist can update entries in db:
+        function test_update()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $new_name = "Kyle";
+
+            //Act
+            $test_stylist->update($new_name);
+
+            //Assert
+            $this->assertEquals("Kyle", $test_stylist->getName());
         }
     }
 
