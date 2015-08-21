@@ -184,6 +184,26 @@
             //Assert
             $this->assertEquals([$test_stylist2], Stylist::getAll());
         }
+
+        function testDeleteStylistClients()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $id = null;
+            $test_client = new Client($name, $stylist_id);
+            $test_client->save();
+
+            //Act
+            $test_stylist->delete();
+
+            //Assert
+            $this->assertEquals([], Client::getAll());
+        }
     }
 
 
