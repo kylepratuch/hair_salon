@@ -14,11 +14,11 @@
 
     class StylistTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     Stylist::deleteAll();
-        //     // Client::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+            // Client::deleteAll();
+        }
 
         //Test that Stylist method can getName:
         function test_getName()
@@ -47,6 +47,58 @@
 
             //Assert
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        //Test that Stylist method can save to db:
+        function test_save()
+        {
+            //Arrange
+            $name = "Erin";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals($test_stylist, $result[0]);
+        }
+
+        //Test that Stylist method can getAll from db:
+        function test_getAll()
+        {
+            //Arrange
+            $name = "Erin";
+            $name2 = "Kyle";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([$test_stylist, $test_stylist2], $result);
+        }
+
+        //Test that Stylist method can deleteAll from db:
+        function test_deleteAll()
+        {
+            //Arrange
+            $name = "Erin";
+            $name2 = "Kyle";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            //Act
+            Stylist::deleteAll();
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
         }
     }
 
