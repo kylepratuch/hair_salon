@@ -86,6 +86,7 @@
             $this->assertEquals($stylist_id, $result);
         }
 
+        //Test that Client can getId:
         function test_getId()
         {
             //Arrange
@@ -106,6 +107,7 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
+        //Test that Client can getAll:
         function test_getAll()
         {
             //Arrange
@@ -130,6 +132,31 @@
             $this->assertEquals([$test_client, $test_client2], $result);
         }
 
+        //Test that Client can deleteAll:
+        function test_deleteAll()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $stylist_id, $id);
+            $test_client->save();
+
+            $name2 = "Judy";
+            $test_client2 = new Client($name2, $stylist_id, $id);
+            $test_client2->save();
+
+            //Act
+            Client::deleteAll();
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
 
     }
 

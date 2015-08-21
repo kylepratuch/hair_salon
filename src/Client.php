@@ -41,10 +41,11 @@
                 '{$this->getName()}',
                 {$this->getStylistId()}
             );");
-            
+
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        //Get all instances of object from db:
         static function getAll()
         {
             $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
