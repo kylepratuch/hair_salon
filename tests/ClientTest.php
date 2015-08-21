@@ -158,7 +158,7 @@
             $this->assertEquals([], $result);
         }
 
-        //Test that Stylist can find by id in db:
+        //Test that Client can find by id in db:
         function test_find()
         {
             //Arrange
@@ -183,6 +183,29 @@
             $this->assertEquals($test_client, $result);
         }
 
+        //Test that Client can update an entry in db:
+        function test_update()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $stylist_id, $id);
+            $test_client->save();
+
+            $new_name = "Jim";
+            $new_test_client = new Client($new_name, $stylist_id, $test_client->getId());
+            
+            //Act
+            $test_client->update($new_name);
+
+            //Assert
+            $this->assertEquals($test_client, $new_test_client);
+        }
     }
 
 ?>
