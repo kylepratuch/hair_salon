@@ -199,12 +199,36 @@
 
             $new_name = "Jim";
             $new_test_client = new Client($new_name, $stylist_id, $test_client->getId());
-            
+
             //Act
             $test_client->update($new_name);
 
             //Assert
             $this->assertEquals($test_client, $new_test_client);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $stylist_id, $id);
+            $test_client->save();
+
+            $name2 = "Judy";
+            $test_client2 = new Client($name2, $stylist_id, $id);
+            $test_client2->save();
+
+            //Act
+            $test_client2->delete();
+
+            //Assert
+            $this->assertEquals([$test_client], Client::getAll());
         }
     }
 
