@@ -13,7 +13,7 @@
             <p>Choose a stylist to view their clients:</p>
             <ul>
                 {% for stylist in stylists %}
-                    <li><a href='/stylist/{{ stylist.getId }}'>{{ stylist.getName }}</a></li>
+                    <li><a href='/stylists/{{ stylist.getId }}'>{{ stylist.getName }}</a></li>
                 {% endfor %}
             </ul>
             <form action='/clear' method='post'>

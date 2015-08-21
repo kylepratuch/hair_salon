@@ -1,0 +1,44 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <title>Your Hair Salon</title>
+</head>
+<body>
+    <div class='container'>
+        <h2>{{ stylist.getName }}'s Clients:</h2>
+
+        {% if clients is not empty %}
+
+            {% for client in clients %}
+                <p>{{ client.getName }}</p>
+
+                <p>
+                    <a href='/clients/{{ client.getId }}/edit' role='button' class='btn btn-primary btn-xs'>Edit this client</a>
+                    <a href='/clients/{{ client.getId }}/delete' role='button' class='btn btn-danger btn-xs'>Delete this client</a>
+                </p>
+
+            {% endfor %}
+
+        {% else %}
+            <p>This stylist does not have any clients yet!</p>
+
+        {% endif %}
+
+        <br>
+        <p>Add a client:</p>
+
+        <form action='/clients' method='post'>
+            <div class='form-group'>
+                <input type='hidden' name='stylist_id' value="{{ stylist.getId() }}">
+
+                <label for='name'>Client name:</label>
+                <input type='text' name='name' id='name'>
+            </div>
+            <button type='submit' class='btn btn-info'>Add client</button>
+        </form>
+
+        <p><a href='/'>Home</a></p>
+
+    </div>
+</body>
+</html>
