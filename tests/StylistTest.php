@@ -136,6 +136,22 @@
             //Assert
             $this->assertEquals("Kyle", $test_stylist->getName());
         }
+
+        //Test that Stylist can delete entries from db:
+        function test_delete()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            //Act
+            $test_stylist->delete();
+
+            //Assert
+            $this->assertEquals([], Stylist::getAll());
+        }
     }
 
 

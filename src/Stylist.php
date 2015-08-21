@@ -75,6 +75,12 @@
             $this->setName($new_name);
         }
 
+        //Delete an object from db:
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+        }
+
 
     }
 ?>
