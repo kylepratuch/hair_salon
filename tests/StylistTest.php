@@ -121,6 +121,31 @@
             $this->assertEquals($test_stylist, $result);
         }
 
+        //Test that Stylist can retrieve associated Clients:
+        function test_getClients()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $stylist_id, $id);
+            $test_client->save();
+
+            $name2 = "Judy";
+            $test_client2 = new Client($name2, $stylist_id, $id);
+            $test_client2->save();
+
+            //Act
+            $result = $test_stylist->getClients();
+
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
         //Test that Stylist can update entries in db:
         function test_update()
         {
