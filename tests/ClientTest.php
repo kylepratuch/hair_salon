@@ -158,6 +158,31 @@
             $this->assertEquals([], $result);
         }
 
+        //Test that Stylist can find by id in db:
+        function test_find()
+        {
+            //Arrange
+            $name = "Erin";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "George";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $stylist_id, $id);
+            $test_client->save();
+
+            $name2 = "Judy";
+            $test_client2 = new Client($name2, $stylist_id, $id);
+            $test_client2->save();
+
+            //Act
+            $result = Client::find($test_client->getId());
+
+            //Assert
+            $this->assertEquals($test_client, $result);
+        }
+
     }
 
 ?>
