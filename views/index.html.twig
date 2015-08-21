@@ -14,10 +14,7 @@
             <ul>
                 {% for stylist in stylists %}
                     <h4><strong><a href='/stylists/{{ stylist.getId }}'>{{ stylist.getName }}</a></strong></h4>
-                    <p>
-                        <a href='/stylists/{{ stylist.getId }}/edit' role='button' class='btn btn-primary btn-xs'>Edit this stylist</a>
-                        <a href='/clients/{{ stylist.getId }}/delete' role='button' class='btn btn-danger btn-xs'>Delete this stylist</a>
-                    </p>
+                    <p><a href='/stylists/{{ stylist.getId }}/edit' role='button' class='btn btn-primary btn-xs'>Edit this stylist</a></p>
                 {% endfor %}
             </ul>
             <form action='/clear' method='post'>

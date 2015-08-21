@@ -6,6 +6,7 @@
     require_once __DIR__."/../src/Client.php";
 
     $app = new Silex\Application();
+    $app['debug'] = true;
 
     //Tell app how to access db:
     $server = 'mysql:host=localhost:3306;dbname=hair_salon';
@@ -68,6 +69,13 @@
         $stylist = Stylist::find($id);
         $stylist->update($name);
         return $app['twig']->render('index.html.twig', array('stylist' => $stylist, 'stylists' => Stylist::getAll()));
+    });
+
+    //Delete a stylist:
+    $app->delete("/stylists/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        $stylist->delete();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
     return $app;
