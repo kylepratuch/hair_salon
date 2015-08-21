@@ -100,6 +100,24 @@
             //Assert
             $this->assertEquals([], $result);
         }
+
+        //Test that Stylist method can find by id in db:
+        function test_find()
+        {
+            //Arrange
+            $name = "Erin";
+            $name2 = "Kyle";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            //Act
+            $result = Stylist::find($test_stylist->getId());
+
+            //Assert
+            $this->assertEquals($test_stylist, $result);
+        }
     }
 
 
