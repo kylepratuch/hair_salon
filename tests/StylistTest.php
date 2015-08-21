@@ -6,7 +6,7 @@
 
     //Dependencies:
     require_once "src/Stylist.php";
-    // require_once "src/Client.php";
+    require_once "src/Client.php";
 
     //Tell app how to access db:
     $server = 'mysql:host=localhost:3306;dbname=hair_salon_test';
@@ -19,7 +19,7 @@
         protected function tearDown()
         {
             Stylist::deleteAll();
-            // Client::deleteAll();
+            Client::deleteAll();
         }
 
         //Test that Stylist can getName:
