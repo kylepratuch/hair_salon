@@ -17,13 +17,13 @@ _Hair salon allows users to add stylists' names to a database. Each stylist can 
  1. Clone this repository: run command 'git clone https://github.com/radradish/hair_salon.git' then change directory to top level of project folder.
  2. Use Composer to install dependencies: run command 'composer install' to download vendor files for Silex, Twig, and PHPUnit (if you wish to run the included tests).
  3. A local SQL server is needed to run the app:
-        -In your terminal: 'mysql.server start' followed by 'mysql -root -proot'
-        -If you would like to create the databases from scratch, use the following commands:
-                -CREATE DATABASE hair_salon;
-                -USE hair_salon;
-                -CREATE TABLE stylists (name VARCHAR (255), id serial PRIMARY KEY);
-                -CREATE TABLE clients (name VARCHAR (255), stylist_id INT, id serial PRIMARY KEY);
-                (Then copy to hair_salon_test using phpmyadmin if you would like to run the included tests.)
+        - In your terminal: 'mysql.server start' followed by 'mysql -root -proot'
+        - If you would like to create the databases from scratch, use the following commands:
+                - CREATE DATABASE hair_salon;
+                - USE hair_salon;
+                - CREATE TABLE stylists (name VARCHAR (255), id serial PRIMARY KEY);
+                - CREATE TABLE clients (name VARCHAR (255), stylist_id INT, id serial PRIMARY KEY);
+                - (Then copy to hair_salon_test using phpmyadmin if you would like to run the included tests.)
         - Be sure are using the correct server address in app/app.php, tests/StylistTest.php, and tests/ClientTest.php!
  4. Start your server in the 'web' folder: to use PHP's built-in server, run command 'php -S localhost:8000'
  5. View the app: in your browser, navigate to the home page at the root address. If running a server as described above, go to 'http://localhost:8000'.
