@@ -1,7 +1,4 @@
 
-
-#MySQL commands used:
-
 # Hair_Salon
 
 ##### _In-browser hair salon management app, 8/21/2015_
